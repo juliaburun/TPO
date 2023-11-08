@@ -28,28 +28,10 @@ def validarOpcionMenu(opcion):
         flag=False
     
     return flag
-    
-#************************   
-#Programa principal
-#************************   
-
-print("Bienvenido al programa")
-print("")
-
-#Leer la primera vez la opcion del menu
-imprimirMenu()
-opcion = int(input("Ingrese la opcion elegida del menu principal: "))
-
-# indices: 0: facturacion, 1: cantidad de fotos
-casamientos = [0,0]
-quinces = [0,0]
-cumpleanios = [0,0]
-bautismos = [0,0]
-otros = [0,0]
-cant_eventos = random.randint(10, 30)
 
 #eventos indices: 0: Casamiento, 1: quince, 2: cumpleaños, 3:bautismo, 4: otros
 def cargar_eventos():
+    cant_eventos = random.randint(10, 30)
     eventos = [0,0,0,0,0]
     for i in range(cant_eventos):
         evento = random.randint(1,5)
@@ -103,6 +85,14 @@ def calcular_fact(evento, lista):
 
 def cargar_datos():
 
+    # indices: 0: facturacion, 1: cantidad de fotos
+    casamientos = [0,0]
+    quinces = [0,0]
+    cumpleanios = [0,0]
+    bautismos = [0,0]
+    otros = [0,0]
+
+
     casamientos[0] = calcular_fact(1, casamientos)
     casamientos[1] = random.randint(30, 300)
 
@@ -117,6 +107,18 @@ def cargar_datos():
 
     otros[0] = calcular_fact(5, otros)
     otros[1] = random.randint(30, 300)
+
+    
+#************************   
+#Programa principal
+#************************   
+
+print("Bienvenido al programa")
+print("")
+
+#Leer la primera vez la opcion del menu
+imprimirMenu()
+opcion = int(input("Ingrese la opcion elegida del menu principal: "))
 
 cargar_eventos()
 cargar_datos()
