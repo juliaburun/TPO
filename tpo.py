@@ -29,8 +29,8 @@ def validarOpcionMenu(opcion):
     
     return flag
 
-#eventos indices: 0: Casamiento, 1: quince, 2: cumpleaños, 3:bautismo, 4: otros
 def cargar_eventos():
+    #eventos indices: 0: Casamiento, 1: quince, 2: cumpleaños, 3:bautismo, 4: otros
     cant_eventos = random.randint(10, 30)
     eventos = [0,0,0,0,0]
     for i in range(cant_eventos):
@@ -46,7 +46,7 @@ def cargar_eventos():
         elif evento == 5:
             eventos[4] += 1
 
-    return eventos
+    return eventos, cant_eventos
 
 def calcular_fact(evento, lista):
     if evento == 1:
@@ -106,11 +106,15 @@ def cargar_datos():
     
     otros[0] = random.randint(30, 300)
     otros[1] = calcular_fact(5, otros)
-    
 
     return casamientos, quinces, cumpleanios, bautismos, otros
 
-    
+ca, q, cu, b, o = cargar_datos()
+
+def total_fact(ca, q, cu, b, o):
+    total_mes = ca[1] + q[1] + cu[1] + b[1] + o[1]
+    return total_mes
+
 #************************   
 #Programa principal
 #************************   
@@ -122,10 +126,7 @@ print("")
 imprimirMenu()
 opcion = int(input("Ingrese la opcion elegida del menu principal: "))
 
-cargar_eventos()
-ca, q, cu, b, o = cargar_datos()
-
-
+e, cant_e = cargar_eventos()
 
 #Comienzo del proceso de las opciones del menu elegidas.
 while opcion!=0:
@@ -140,7 +141,7 @@ while opcion!=0:
     #opciones validas del menú
     if opcion==1:
         print("Total de facturacion del mes y cantidad de eventos:")
-        print("Los eventos son: ", ca, q, cu, b, o)
+        print("La cantidad de eventos fue de: ", cant_e, " y el total facturado es de: ", total_fact(ca, q, cu, b, o))
         
     elif opcion==2:
         print("Has elegido la opcion 2")
