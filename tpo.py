@@ -49,8 +49,8 @@ otros = [0,0]
 cant_eventos = random.randint(10, 30)
 
 #eventos indices: 0: Casamiento, 1: quince, 2: cumpleaños, 3:bautismo, 4: otros
-def eventos():
-    eventos = []
+def cargar_eventos():
+    eventos = [0,0,0,0,0]
     for i in range(cant_eventos):
         evento = random.randint(1,5)
         if evento == 1:
@@ -63,66 +63,67 @@ def eventos():
             eventos[3] += 1
         elif evento == 5:
             eventos[4] += 1
-    
+
     return eventos
 
 def calcular_fact(evento, lista):
     if evento == 1:
-        if lista[2] <= 50:
-            precio = lista[2] * 75
-        elif lista[2] > 50 and lista[2] < 100:
-            precio = lista[2] * 65
+        if lista[1] <= 50:
+            precio = lista[1] * 75
+        elif lista[1] > 50 and lista[1] < 100:
+            precio = lista[1] * 65
         else:
-            precio = lista[2] * 60
+            precio = lista[1] * 60
     elif evento == 2:
-        if lista[2] <= 50:
-            precio = lista[2] * 85
-        elif lista[2] > 50 and lista[2] < 100:
-            precio = lista[2] * 75
+        if lista[1] <= 50:
+            precio = lista[1] * 85
+        elif lista[1] > 50 and lista[1] < 100:
+            precio = lista[1] * 75
         else:
-            precio = lista[2] * 70
+            precio = lista[1] * 70
     elif evento == 3:
-        if lista[2] <= 50:
-            precio = lista[2] * 65
+        if lista[1] <= 50:
+            precio = lista[1] * 65
         else:
-            precio = lista[2] * 55
+            precio = lista[1] * 55
     elif evento == 4:
-        if lista[2] <= 50:
-            precio = lista[2] * 75
+        if lista[1] <= 50:
+            precio = lista[1] * 75
         else:
-            precio = lista[2] * 65
+            precio = lista[1] * 65
     elif evento == 5:
-        if lista[2] <= 50:
-            precio = lista[2] * 100
-        elif lista[2] > 50 and lista[2] < 100:
-            precio = lista[2] * 90
+        if lista[1] <= 50:
+            precio = lista[1] * 100
+        elif lista[1] > 50 and lista[1] < 100:
+            precio = lista[1] * 90
         else:
-            precio = lista[2] * 80
+            precio = lista[1] * 80
         
     return precio
 
-def cargar_datos(evento):
+def cargar_datos():
 
-    casamientos[0] = calcular_fact(evento, casamientos)
+    casamientos[0] = calcular_fact(1, casamientos)
     casamientos[1] = random.randint(30, 300)
 
-    quinces[0] = calcular_fact(evento, quinces)
+    quinces[0] = calcular_fact(2, quinces)
     quinces[1] = random.randint(30, 300)
 
-    cumpleanios[0] = calcular_fact(evento, cumpleanios)
+    cumpleanios[0] = calcular_fact(3, cumpleanios)
     cumpleanios[1] = random.randint(30, 300)
 
-    bautismos[0] = calcular_fact(evento, bautismos)
+    bautismos[0] = calcular_fact(4, bautismos)
     bautismos[1] = random.randint(30, 300)
 
-    otros[0] = calcular_fact(evento, otros)
+    otros[0] = calcular_fact(5, otros)
     otros[1] = random.randint(30, 300)
+
+cargar_eventos()
+cargar_datos()
 
 #Comienzo del proceso de las opciones del menu elegidas.
 while opcion!=0:
-
-    cargar_datos()
-
+    
     flagMenu = validarOpcionMenu(opcion)
     while flagMenu == False:
         print("Opcion de menu invalida, vuelva a ingresar...")
