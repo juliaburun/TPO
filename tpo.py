@@ -108,6 +108,8 @@ def cargar_datos():
     otros[0] = calcular_fact(5, otros)
     otros[1] = random.randint(30, 300)
 
+    return casamientos, quinces, cumpleanios, bautismos, otros
+
     
 #************************   
 #Programa principal
