@@ -50,36 +50,36 @@ def cargar_eventos():
 
 def calcular_fact(evento, lista):
     if evento == 1:
-        if lista[1] <= 50:
-            precio = lista[1] * 75
-        elif lista[1] > 50 and lista[1] < 100:
-            precio = lista[1] * 65
+        if lista[0] <= 50:
+            precio = lista[0] * 75
+        elif lista[0] > 50 and lista[0] < 100:
+            precio = lista[0] * 65
         else:
-            precio = lista[1] * 60
+            precio = lista[0] * 60
     elif evento == 2:
-        if lista[1] <= 50:
-            precio = lista[1] * 85
-        elif lista[1] > 50 and lista[1] < 100:
-            precio = lista[1] * 75
+        if lista[0] <= 50:
+            precio = lista[0] * 85
+        elif lista[0] > 50 and lista[0] < 100:
+            precio = lista[0] * 75
         else:
-            precio = lista[1] * 70
+            precio = lista[0] * 70
     elif evento == 3:
-        if lista[1] <= 50:
-            precio = lista[1] * 65
+        if lista[0] <= 50:
+            precio = lista[0] * 65
         else:
-            precio = lista[1] * 55
+            precio = lista[0] * 55
     elif evento == 4:
-        if lista[1] <= 50:
-            precio = lista[1] * 75
+        if lista[0] <= 50:
+            precio = lista[0] * 75
         else:
-            precio = lista[1] * 65
+            precio = lista[0] * 65
     elif evento == 5:
-        if lista[1] <= 50:
-            precio = lista[1] * 100
-        elif lista[1] > 50 and lista[1] < 100:
-            precio = lista[1] * 90
+        if lista[0] <= 50:
+            precio = lista[0] * 100
+        elif lista[0] > 50 and lista[0] < 100:
+            precio = lista[0] * 90
         else:
-            precio = lista[1] * 80
+            precio = lista[0] * 80
         
     return precio
 
