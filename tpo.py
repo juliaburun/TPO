@@ -113,7 +113,34 @@ ca, q, cu, b, o = cargar_datos()
 
 def total_fact(ca, q, cu, b, o):
     total_mes = ca[1] + q[1] + cu[1] + b[1] + o[1]
-    return total_mes
+    return total_mes 
+
+def calcular_facturacion_eventos_por_tipo(ca, q, cu, b, o):
+    # Lista de nombres de tipos de evento
+    tipos_evento = ["Casamientos", "Quinceañeras", "Cumpleaños", "Bautismos", "Otros"]
+
+    # Lista de facturación por tipo de evento
+    facturacion_eventos = [sum(ca), sum(q), sum(cu), sum(b), sum(o)]
+
+    # Crear una lista de pares (nombre de evento, facturación) sin usar zip
+    eventos_ordenados = []
+    for i in range(len(tipos_evento)):
+        eventos_ordenados.append((tipos_evento[i], facturacion_eventos[i]))
+
+    # Definir una función de comparación para ordenar los eventos
+    def comparar_facturacion(evento):
+        return evento[1]
+
+    # Ordenar la lista de eventos por facturación en orden descendente
+    eventos_ordenados.sort(key=comparar_facturacion, reverse=True)
+
+    # Imprimir el total de facturación por tipo de evento
+    for evento, facturacion in eventos_ordenados:
+        print(f"Total de facturación para {evento}: {facturacion} eventos")
+
+    # Devolver la lista de eventos ordenados (puedes usarla si necesitas más procesamiento)
+    return eventos_ordenados
+
 
 #************************   
 #Programa principal
@@ -144,9 +171,8 @@ while opcion!=0:
         print("La cantidad de eventos fue de: ", cant_e, " y el total facturado es de: ", total_fact(ca, q, cu, b, o))
         
     elif opcion==2:
-        print("Has elegido la opcion 2")
-        #proceso de datos para opcion 2
-        #impresion de datos para opcion 2
+        print("Has elegido la opcion 2") 
+        calcular_facturacion_eventos_por_tipo(ca, q, cu, b, o)
     elif opcion==3:
         print("Has elegido la opcion 3")
         #proceso de datos para opcion 3
@@ -157,8 +183,7 @@ while opcion!=0:
     imprimirMenu()   
     opcion=int(input("Ingrese la opcion elegida del menu principal: "))
 
-else:
-    print("FIN DEL PROGRAMA")
+print("FIN DEL PROGRAMA")
     
     
 
