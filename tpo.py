@@ -115,32 +115,37 @@ def total_fact(ca, q, cu, b, o):
     total_mes = ca[1] + q[1] + cu[1] + b[1] + o[1]
     return total_mes 
 
-def calcular_facturacion_eventos_por_tipo(ca, q, cu, b, o):
-    # Lista de nombres de tipos de evento
-    tipos_evento = ["Casamientos", "Quinceañeras", "Cumpleaños", "Bautismos", "Otros"]
+def fact_evento(e, ca, q, cu, b, o):
+    facturaciones = [0, 0, 0, 0, 0]
+    facturaciones[0] = e[0] * ca[1]
+    facturaciones[1] = e[1] * q[1]
+    facturaciones[2] = e[2] * cu[1]
+    facturaciones[3] = e[3] * b[1]
+    facturaciones[4] = e[4] * o[1]
+    
+    return facturaciones
 
-    # Lista de facturación por tipo de evento
-    facturacion_eventos = [sum(ca), sum(q), sum(cu), sum(b), sum(o)]
+e, cant_e = cargar_eventos()
+facturaciones = fact_evento(e, ca, q, cu, b, o)
 
-    # Crear una lista de pares (nombre de evento, facturación) sin usar zip
-    eventos_ordenados = []
-    for i in range(len(tipos_evento)):
-        eventos_ordenados.append((tipos_evento[i], facturacion_eventos[i]))
-
-    # Definir una función de comparación para ordenar los eventos
-    def comparar_facturacion(evento):
-        return evento[1]
-
-    # Ordenar la lista de eventos por facturación en orden descendente
-    eventos_ordenados.sort(key=comparar_facturacion, reverse=True)
-
-    # Imprimir el total de facturación por tipo de evento
-    for evento, facturacion in eventos_ordenados:
-        print(f"Total de facturación para {evento}: {facturacion} eventos")
-
-    # Devolver la lista de eventos ordenados (puedes usarla si necesitas más procesamiento)
-    return eventos_ordenados
-
+def burbujeo(facturaciones, e): # a chequear, anda raro
+    largo = len(facturaciones)
+    fact_ordenada = []
+    desordenada = True
+    while desordenada:
+        desordenada = False
+        for i in range(largo-1):
+            if facturaciones[i]<facturaciones[i+1]:
+                aux = facturaciones[i]
+                facturaciones[i] = facturaciones[i+1]
+                facturaciones[i+1] = aux
+                fact_ordenada.append(facturaciones[i])
+                aux = e[i]
+                e[i] = e[i+1]
+                e[i+1] = aux
+                desordenada = True
+    return fact_ordenada
+    
 
 #************************   
 #Programa principal
@@ -153,7 +158,7 @@ print("")
 imprimirMenu()
 opcion = int(input("Ingrese la opcion elegida del menu principal: "))
 
-e, cant_e = cargar_eventos()
+
 
 #Comienzo del proceso de las opciones del menu elegidas.
 while opcion!=0:
@@ -172,7 +177,8 @@ while opcion!=0:
         
     elif opcion==2:
         print("Has elegido la opcion 2") 
-        calcular_facturacion_eventos_por_tipo(ca, q, cu, b, o)
+        print(fact_evento(e, ca, q, cu, b, o))
+        print(burbujeo(facturaciones, e))
     elif opcion==3:
         print("Has elegido la opcion 3")
         #proceso de datos para opcion 3
