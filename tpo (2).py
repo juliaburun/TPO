@@ -17,7 +17,6 @@ def imprimirMenu():
     
     return
 
-
 #Funcion que valida que las opciones elegidas del menu sean las correctas.
 #Solo valida numeros. Si se ingresa letras se corta el programa.
 #Agregar las opciones necesarias segun el programa de cada uno.
@@ -144,38 +143,30 @@ def burbujeo(facturaciones, e): # a chequear, anda raro
                 desordenada = True
     return fact_ordenada
 
-
-
-        
-
-    
 def mostrar_detalle_eventos_tipo(tipo, eventos, facturaciones, fotos): #eventos es historial de cantidad de veces que se realizo
     if tipo < 0 or tipo > 4:
         print("Tipo de evento inválido. Debe ser un número del 0 al 4.")
         return
 
-    nombres_tipos = ["Casamientos", "Quinceañeras", "Cumpleaños", "Bautismos", "Otros"]
+    nombres_tipos = [1, 2, 3, 4, 5]
     nombre_tipo_seleccionado = nombres_tipos[tipo] #saque el menos 1 porque tipo ya esta en rango
+    
+    if nombre_tipo_seleccionado == 1:
+        print("Detalle de evento Casamientos")
+    elif nombre_tipo_seleccionado == 2:
+        print("Detalle de evento Quinceañeras")
+    elif nombre_tipo_seleccionado == 3:
+        print("Detalle de evento Cumpleaños")
+    elif nombre_tipo_seleccionado == 4:
+        print("Detalle de evento Bautismos")
+    elif nombre_tipo_seleccionado == 5:
+        print("Detalle de evento Otros")
 
-    print("Detalle de eventos de tipo:", nombre_tipo_seleccionado)
-    print("Cantidad de evento realizado:",eventos[tipo])
-    print("Facturacion obtenida:",facturaciones[tipo],"Pesos")
-    print("Fotos sacadas:",fotos[tipo])
+    print("Cantidad de evento realizado:", eventos[tipo - 1])
+    print("Cantidad de evento realizado:", facturaciones[tipo - 1], "Pesos")
+    print("Cantidad de evento realizado:", fotos[tipo - 1])
 
-    """
-    for i in range(len(eventos)):
-        if eventos[i] == tipo:
-            print("Evento", i + 1, ":")
-            print("  Facturación:", facturaciones[i])
-            print("  Cantidad de fotos:", fotos[i])
-            print()
-
-    # Ejemplo de uso de la función
-    # Supongamos que tienes las listas 'eventos', 'facturaciones' y 'fotos' que contienen la información de los eventos
-
-    tipo_seleccionado = int(input("Ingrese el tipo de evento (1-5) para ver detalles: "))
-    mostrar_detalle_eventos_tipo(tipo_seleccionado, eventos, facturaciones, fotos)
-    """
+    
 #************************   
 #Programa principal
 #************************   
@@ -186,8 +177,6 @@ print("")
 #Leer la primera vez la opcion del menu
 imprimirMenu()
 opcion = int(input("Ingrese la opcion elegida del menu principal: "))
-
-
 
 #Comienzo del proceso de las opciones del menu elegidas.
 while opcion!=0:
@@ -202,17 +191,21 @@ while opcion!=0:
     #opciones validas del menú
     if opcion==1:
         print("Total de facturacion del mes y cantidad de eventos:")
-        print("La cantidad de eventos fue de: ", total_eventos(eventos), " y el total facturado es de: ", total_fact(listaDatosCargados))
+        print("La cantidad de eventos fue de:", total_eventos(eventos), " y el total facturado es de:", total_fact(listaDatosCargados))
         
     elif opcion==2:
-        print("Has elegido la opcion 2") 
+        # Agrupados por tipo de evento
+        print("Total de facturacion por tipo de evento y la cantidad de eventos ordenados:") 
         print(fact_evento(listaDatosCargados))
         print(burbujeo(facturaciones, eventos))
     elif opcion==3:
-        print("Has elegido la opcion 3")
+        # Todos los items, sin agrupar
+        print("Listado completo del total facturado de cada evento con su tipo, ordenado por total facturado:")
+    elif opcion==4:
+        print("Has elegido la opcion 4")
         # Solicita al usuario el tipo de evento que desea ver
-        tipo_seleccionado = int(input("Ingrese el tipo de evento (0-4) para ver detalles: "))
-        mostrar_detalle_eventos_tipo(tipo_seleccionado,eventos,facturaciones,fotosSacadasTotal) #arreglar, va a tirar error cuando tipo este mas grande que 4
+        tipo_seleccionado = int(input("Ingrese el tipo de evento (1-5) para ver detalles: "))
+        mostrar_detalle_eventos_tipo(tipo_seleccionado - 1, eventos, facturaciones, fotosSacadasTotal)
 
     #Luego de procesar la opcion del menu elegida
     #Vuelvo a invocar al menu
@@ -221,6 +214,4 @@ while opcion!=0:
 
 print("FIN DEL PROGRAMA")
     
-    
-
 #Fin del programa
