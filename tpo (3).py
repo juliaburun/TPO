@@ -28,12 +28,6 @@ def validarOpcionMenu(opcion):
     return flag
 
 def cargar_eventos():
-    #eventos indices: 0: Casamiento, 1: quince, 2: cumpleaños, 3:bautismo, 4: otros
-    #cant_eventos = [0,0,0,0,0]
-    #for i in range(0,len(cant_eventos),1):
-    #    cant_eventos[i] = random.randint(10,30)
-
-    #return cant_eventos
     eventos = [0,0,0,0,0]
     cant_eventos = random.randint(10, 30)
     for i in range(cant_eventos):
@@ -110,12 +104,9 @@ def cargar_datos():
             # indices: 0: fotos, 1: facturacion
            
         
-    return casamientos, quinces, cumpleanios, bautismos, otros #[[adentro de casami],[adentro de quin],...]
-
-
+    return casamientos, quinces, cumpleanios, bautismos, otros 
 
 def total_fact():
-    # listaDatosCargados = cargar_datos()
     i = 0
     total_mes = 0
     while (i < len(listaDatosCargados)):
@@ -126,7 +117,6 @@ def total_fact():
     return total_mes 
 
 def total_eventos():
-    # eventos = cargar_eventos()
     i = 0 
     total = 0
     while(i < len(eventos)):
@@ -135,7 +125,6 @@ def total_eventos():
     return total
 
 def fact_evento():
-  
     i = 0
     facturaciones=[]
     fotosSacadasTotal=[]
@@ -151,8 +140,6 @@ def fact_evento():
         facturaciones.append(total_mesFactura)
         fotosSacadasTotal.append(total_mesFotos)
         i = i+1
-    
-
     return facturaciones, fotosSacadasTotal
 
 def burbujeo(e):
@@ -182,7 +169,6 @@ def burbujeoCompleto(e):
     return e
 
 def mostrar_total_facturacion_por_tipo():
-    # eventos = cargar_eventos()
     # lista con índices de tipos de evento
     tipos_evento = [1, 2, 3, 4, 5]
     # Ordenar la lista
@@ -230,10 +216,9 @@ def mostrar_total_facturacion_detallado():
             print("Otros ","Cantidad:", detalle[0]," $ ",detalle[1] )
 
 
-def mostrar_detalle_eventos_tipo(tipo): #eventos es historial de cantidad de veces que se realizo
+def mostrar_detalle_eventos_tipo(tipo): 
 
     facturaciones, fotos = fact_evento()
-    # eventos = cargar_eventos()
     if tipo < 0 or tipo > 4:
         print("Tipo de evento inválido. Debe ser un número del 1 al 5.")
         return
