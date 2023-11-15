@@ -163,7 +163,18 @@ def mostrar_total_facturacion_por_tipo():
 
     print("Total de facturación por tipo de evento y cantidad de eventos ordenado por facturación:")
     for tipo in tipos_evento:
-        print("Tipo de evento:", tipo)
+        if tipo == 1:
+            nombre_evento = "Casamiento"
+        elif tipo == 2:
+            nombre_evento = "Quinceaños"
+        elif tipo == 3:
+            nombre_evento = "Cumpleaños"
+        elif tipo == 4:
+            nombre_evento = "Bautismo"
+        elif tipo == 5:
+            nombre_evento = "Otros"
+            
+        print("Tipo de evento:", nombre_evento)
         print("Total facturado:", facturaciones[tipo - 1], "Pesos")
         print("Cantidad de eventos:", eventos[tipo - 1])
         print("")
@@ -173,7 +184,7 @@ def mostrar_detalle_eventos_tipo(tipo): #eventos es historial de cantidad de vec
     facturaciones, fotos = fact_evento()
     eventos = cargar_eventos()
     if tipo < 0 or tipo > 4:
-        print("Tipo de evento inválido. Debe ser un número del 0 al 4.")
+        print("Tipo de evento inválido. Debe ser un número del 1 al 5.")
         return
 
     nombres_tipos = [1, 2, 3, 4, 5]
