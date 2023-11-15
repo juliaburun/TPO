@@ -132,31 +132,33 @@ def total_eventos():
 def fact_evento():
     e = cargar_eventos()
     ca, q, cu, b, o = cargar_datos()
-    facturaciones = [e[0]*ca[1],e[1] * q[1], e[2] * cu[1], e[3] * b[1], e[4] * o[1]] #Creacion de la lista facturaciones
+    #Creacion de la lista facturaciones
+    facturaciones = [e[0]*ca[1],e[1] * q[1], e[2] * cu[1], e[3] * b[1], e[4] * o[1]] 
     fotosSacadasTotal = [e[0] * ca[0],e[1] * q[0], e[2] * cu[0], e[3] * b[0], e[4] * o[0]]
     return facturaciones, fotosSacadasTotal
 
-def burbujeo(e):
+def ordenamiento():
     facturaciones, fotos = fact_evento()
     largo = len(facturaciones)
-    desordenada = True
-    while desordenada:
-        desordenada = False
-        for i in range(largo-1, 0, -1):
-            if facturaciones[i]>facturaciones[i-1]:
+    eventos = [1, 2, 3, 4, 5]  # Lista de eventos
+    
+    for i in range(largo-1):
+        for j in range(i+1, largo):
+            if facturaciones[i] > facturaciones[j]:
                 # Intercambiar elementos en facturaciones
-                facturaciones[i], facturaciones[i-1] = facturaciones[i-1], facturaciones[i]
-                # Intercambiar elementos en e (eventos)
-                e[i], e[i-1] = e[i-1], e[i]
-                desordenada = True
-    return facturaciones, e
+                aux = facturaciones[i]
+                facturaciones[i] = facturaciones[j]
+                facturaciones[j] = aux
+                # Intercambiar elementos en eventos
+                aux = eventos[i]
+                eventos[i] = eventos[j]
+                eventos[j] = aux
+    return facturaciones, eventos
 
 def mostrar_total_facturacion_por_tipo():
     eventos = cargar_eventos()
-    # lista con índices de tipos de evento
-    tipos_evento = [1, 2, 3, 4, 5]
     # Ordenar la lista
-    facturaciones, tipos_evento = burbujeo(tipos_evento)
+    facturaciones, tipos_evento = ordenamiento()
 
     print("Total de facturación por tipo de evento y cantidad de eventos ordenado por facturación:")
     for tipo in tipos_evento:
