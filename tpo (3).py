@@ -209,10 +209,12 @@ def mostrar_total_facturacion_por_tipo():
         
 def mostrar_total_facturacion_detallado():
     lista_combinada = []
-    for idx, lista in enumerate(listaDatosCargados, start=1):
+    idx = 1
+    for lista in listaDatosCargados:
         for sublista in lista:
             sublista.append(idx)  
             lista_combinada.append(sublista)
+        idx += 1
 
     lista_ordenada = burbujeoCompleto(lista_combinada)
     for detalle in lista_ordenada:
