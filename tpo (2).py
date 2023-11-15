@@ -136,8 +136,8 @@ def fact_evento():
     fotosSacadasTotal = [e[0] * ca[0],e[1] * q[0], e[2] * cu[0], e[3] * b[0], e[4] * o[0]]
     return facturaciones, fotosSacadasTotal
 
-def burbujeo(facturaciones, e):
-    e = cargar_eventos()
+def burbujeo(e):
+    facturaciones, fotos = fact_evento()
     largo = len(facturaciones)
     desordenada = True
     while desordenada:
@@ -152,29 +152,25 @@ def burbujeo(facturaciones, e):
     return facturaciones, e
 
 def mostrar_total_facturacion_por_tipo():
-    facturaciones, fotos = fact_evento()
     eventos = cargar_eventos()
-    
     # lista con índices de tipos de evento
     tipos_evento = [1, 2, 3, 4, 5]
-    
     # Ordenar la lista
-    burbujeo(facturaciones, tipos_evento)
+    facturaciones, tipos_evento = burbujeo(tipos_evento)
 
     print("Total de facturación por tipo de evento y cantidad de eventos ordenado por facturación:")
     for tipo in tipos_evento:
         if tipo == 1:
-            nombre_evento = "Casamiento"
+            print("Casamiento")
         elif tipo == 2:
-            nombre_evento = "Quinceaños"
+            print("Quinceaños")
         elif tipo == 3:
-            nombre_evento = "Cumpleaños"
+            print("Cumpleaños")
         elif tipo == 4:
-            nombre_evento = "Bautismo"
+            print("Bautismo")
         elif tipo == 5:
-            nombre_evento = "Otros"
-            
-        print("Tipo de evento:", nombre_evento)
+            print("Otros")
+        
         print("Total facturado:", facturaciones[tipo - 1], "Pesos")
         print("Cantidad de eventos:", eventos[tipo - 1])
         print("")
